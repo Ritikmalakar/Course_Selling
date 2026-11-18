@@ -24,7 +24,7 @@ import About from "./component/About"
 import Footer from "./component/Footer"
 import Search from "./pages/Search"
 
-export const serverUrl="http://localhost:1112"
+export const serverUrl="https://course-selling-o37x.onrender.com"
 
 function App() {
   useCurrentUser();
