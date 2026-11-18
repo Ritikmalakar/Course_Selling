@@ -12,7 +12,7 @@ import multer from 'multer';
 const app = express();
 app.use(express.json())
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://course-selling-1-mgse.onrender.com",
   credentials: true
 }))
 app.use(cookieParser())
