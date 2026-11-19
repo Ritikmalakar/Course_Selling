@@ -24,6 +24,11 @@ import About from "./component/About"
 import Footer from "./component/Footer"
 import Search from "./pages/Search"
 
+<<<<<<< HEAD
+=======
+export const serverUrl="https://course-selling-o37x.onrender.com"
+
+>>>>>>> f4515c9d64ec911ec3ffbd405150874392ae5c0f
 function App() {
   useCurrentUser();
   GetCreateCourse();

@@ -20,7 +20,11 @@ const allowedOrigins = (
   .filter(Boolean);
 
 app.use(cors({
+<<<<<<< HEAD
   origin: allowedOrigins,
+=======
+  origin: "https://course-selling-1-mgse.onrender.com",
+>>>>>>> f4515c9d64ec911ec3ffbd405150874392ae5c0f
   credentials: true
 }))
 app.use(express.json())
@@ -80,7 +84,11 @@ async function serverStart() {
     process.exit(1);
   });
 }
+<<<<<<< HEAD
 serverStart().catch((error) => {
   console.error("Server startup failed:", error.message);
   process.exit(1);
 });
+=======
+serverStart();
+>>>>>>> f4515c9d64ec911ec3ffbd405150874392ae5c0f
