@@ -1,22 +1,39 @@
+import 'dotenv/config';
 import express from 'express'
-import dotenv from 'dotenv'
 import { connectDb } from './config/db.js';
+import mongoose from 'mongoose';
 import userRoutes from './routes/uerRoutes.js'
 import userDataRoutes from './routes/userDataROutes.js'
 import courseRoutes from './routes/courseRoutes.js'
 import orderRoutes from './routes/paymentRoutes.js'
-dotenv.config();
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 const app = express();
-app.use(express.json())
+const allowedOrigins = (
+  process.env.FRONTEND_URLS ||
+  process.env.FRONTEND_URL ||
+  "http://localhost:5173"
+)
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: allowedOrigins,
   credentials: true
 }))
+app.use(express.json())
 app.use(cookieParser())
 
+app.get("/health", (_req, res) => {
+  const databaseReady = mongoose.connection.readyState === 1;
+  return res.status(databaseReady ? 200 : 503).json({
+    success: databaseReady,
+    status: databaseReady ? "ok" : "degraded",
+    database: databaseReady ? "connected" : "disconnected"
+  });
+});
 
 app.use("/api/user", userRoutes)
 app.use("/api/userData", userDataRoutes)
@@ -54,13 +71,16 @@ app.use((error, req, res, next) => {
 });
 
 async function serverStart() {
-  try {
-    await connectDb();
-    app.listen(process.env.PORT, () => {
-      console.log("server stated");
-    })
-  } catch (error) {
-    console.log(error)
-  }
+  await connectDb();
+  const port = process.env.PORT || 1112;
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`Server listening on port ${port}`);
+  }).on("error", (error) => {
+    console.error("Server failed to listen:", error.message);
+    process.exit(1);
+  });
 }
-serverStart();
+serverStart().catch((error) => {
+  console.error("Server startup failed:", error.message);
+  process.exit(1);
+});

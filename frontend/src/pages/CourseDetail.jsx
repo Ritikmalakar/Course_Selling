@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { ArrowLeft } from 'lucide-react'
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 import img from '../assets/empty.jpg'
 
 function CourseDetail() {

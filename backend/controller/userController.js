@@ -5,6 +5,22 @@ import bcrypt from "bcryptjs";
 import { genToken } from "../config/token.js";
 import sendEmail from "../config/sendMail.js";
 
+function getTokenCookieOptions() {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  return {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "strict"
+  };
+}
+
+function setAuthCookie(res, token) {
+  res.cookie("token", token, {
+    ...getTokenCookieOptions(),
+    maxAge: 7 * 24 * 60 * 60 * 1000
+  });
+}
 
 export async function signUp(req, res) {
   try {
@@ -71,12 +87,7 @@ export async function signUp(req, res) {
     const token = await genToken(user._id);
 
     // 9. Set cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+    setAuthCookie(res, token);
 
     // 10. Remove password from response
     const safeUser = user.toObject();
@@ -145,12 +156,7 @@ export async function login(req, res) {
     // Generate token
     const token = await genToken(user._id);
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+    setAuthCookie(res, token);
 
     const safeUser = user.toObject();
     delete safeUser.password;
@@ -175,11 +181,7 @@ export async function login(req, res) {
 // LOGOUT API
 export async function logout(req, res) {
   try {
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict"
-    });
+    res.clearCookie("token", getTokenCookieOptions());
 
     return res.status(200).json({
       success: true,
@@ -323,12 +325,7 @@ export async function googleLogin(req, res) {
     }
     const token = await genToken(user._id);
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+    setAuthCookie(res, token);
     const safeUser = user.toObject();
     delete safeUser.password;
 
@@ -344,6 +341,5 @@ export async function googleLogin(req, res) {
     })
   }
 }
-
 
 

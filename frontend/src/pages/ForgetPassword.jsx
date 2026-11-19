@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, ShieldCheck, ArrowLeft, KeyRound } from 'lucide-react';
 import axios from 'axios';
-import { serverUrl } from '../App';
+import { serverUrl } from '../lib/api';
 import { toast } from 'react-toastify';
 
 function ForgetPassword() {

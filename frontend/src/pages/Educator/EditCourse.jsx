@@ -15,7 +15,7 @@ import {
   Video
 } from 'lucide-react'
 
-import { serverUrl } from '../../App'
+import { serverUrl } from '../../lib/api'
 
 import {
   setCourseData as setPublishedCourseData,

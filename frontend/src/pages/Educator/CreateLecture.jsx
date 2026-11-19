@@ -5,7 +5,7 @@ import { FaEdit } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { serverUrl } from '../../App'
+import { serverUrl } from '../../lib/api'
 import { toast } from 'react-toastify'
 import { setLectureData } from '../../redux/lectureSlice'
 

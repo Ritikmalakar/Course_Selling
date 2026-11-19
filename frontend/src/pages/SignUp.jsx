@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import logo from '../assets/logo.jpg';
 import google from '../assets/google.jpg';
-import { serverUrl } from '../App';
+import { serverUrl } from '../lib/api';
 import { ClipLoader } from 'react-spinners';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../redux/slice';

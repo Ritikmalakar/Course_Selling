@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 import { toast } from 'react-toastify'
 import { setUserData } from '../redux/slice'
 

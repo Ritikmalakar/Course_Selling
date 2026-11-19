@@ -12,7 +12,7 @@ import {
   PlusCircle,
   Users
 } from 'lucide-react'
-import { serverUrl } from '../../App'
+import { serverUrl } from '../../lib/api'
 import {
   Bar,
   BarChart,

@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Search as SearchIcon, Mic } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 
 function Search() {
 

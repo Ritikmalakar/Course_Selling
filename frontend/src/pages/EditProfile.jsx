@@ -5,7 +5,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { Camera, ArrowLeft, Save } from 'lucide-react'
 
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 import { setUserData } from '../redux/slice'
 
 function EditProfile() {

@@ -4,7 +4,7 @@ import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
 import useCurrentUser from "./customHooks/useCurrentUser"
 import { useSelector } from "react-redux"
-import Profile from "./pages/profile"
+import Profile from "./pages/Profile"
 import MyCourse from "./pages/MyCourse"
 import ForgetPassword from "./pages/ForgetPassword"
 import EditProfile from "./pages/EditProfile"
@@ -23,8 +23,6 @@ import ViewLecture from "./pages/ViewLecture"
 import About from "./component/About"
 import Footer from "./component/Footer"
 import Search from "./pages/Search"
-
-export const serverUrl="http://localhost:1112"
 
 function App() {
   useCurrentUser();

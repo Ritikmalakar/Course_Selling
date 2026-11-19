@@ -4,7 +4,7 @@ import { BookOpen, PlayCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 import emptyImage from '../assets/empty.jpg'
 
 function MyCourse() {

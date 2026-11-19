@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { ArrowLeft, BookOpen, LockKeyhole, PlayCircle } from 'lucide-react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 import { toast } from 'react-toastify'
 
 function ViewLecture() {

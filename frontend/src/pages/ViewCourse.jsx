@@ -17,7 +17,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { serverUrl } from '../App'
+import { serverUrl } from '../lib/api'
 import emptyImage from '../assets/empty.jpg'
 import { setCourseData, setSelectedCourse } from '../redux/courseSlice'
 import { setUserData } from '../redux/slice'

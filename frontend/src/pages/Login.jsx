@@ -8,7 +8,7 @@ import { ClipLoader } from 'react-spinners';
 
 import logo from '../assets/logo.jpg';
 import google from '../assets/google.jpg';
-import { serverUrl } from '../App';
+import { serverUrl } from '../lib/api';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../redux/slice';
 import { signInWithPopup } from 'firebase/auth';

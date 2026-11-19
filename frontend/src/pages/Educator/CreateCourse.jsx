@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { BookOpen, ArrowLeft, PlusCircle } from 'lucide-react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { serverUrl } from '../../App'
+import { serverUrl } from '../../lib/api'
 
 function CreateCourse() {
   const navigate = useNavigate()

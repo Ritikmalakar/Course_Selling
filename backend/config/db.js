@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 
 export async function connectDb() {
-  try {
-    await mongoose.connect(process.env.MONGO_URL)
-    console.log("databse connected successfully")
-  } catch (error) {
-    console.log(error)
+  if (!process.env.MONGO_URL) {
+    throw new Error("MONGO_URL is not configured");
   }
+
+  await mongoose.connect(process.env.MONGO_URL)
+  console.log("Database connected successfully")
 }

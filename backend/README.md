@@ -1,5 +1,41 @@
 # Education API
 
+## Authentication
+
+- `POST /api/user/signUp` accepts `{ "name": "...", "email": "...", "password": "...", "role": "student" }` (or `"educator"`). The password must be at least 8 characters. A profile `description` is optional and defaults to an empty string.
+
+## Render deployment
+
+Deploy the backend as a Render Web Service with the backend directory as its
+root, `npm install` as the build command, and `npm start` as the start command.
+Set the health check path to `/health`. The service starts only after MongoDB
+connects; `/health` returns `503` until the database is ready or if it becomes
+unavailable.
+
+Configure these backend environment variables in Render:
+
+- `NODE_ENV=production`
+- `MONGO_URL` and `JWT_SECRET`
+- `FRONTEND_URLS` as the comma-separated frontend origin(s), without trailing
+  slashes (for example, `https://your-frontend.onrender.com`)
+- `SMTP_USER` and `SMTP_PASS` for email/OTP features
+- `CLOUD_NAME`, `CLOUD_API_KEY`, and `CLOUD_API_SECRET` for media uploads
+- `RAZORPAY_KEY_ID` and `RAZORPAY_SECRET` for paid checkout
+- `GEMINI_API_KEY` for AI course search
+
+Set `VITE_API_URL` on the frontend Render Static Site to the backend's HTTPS
+URL, without a trailing slash. Also set `VITE_FIREBASE_API_KEY` and
+`VITE_RAZORPAY_KEY_ID` as needed. Vite embeds these values at build time, so
+redeploy the frontend after changing them. See `../frontend/.env.example` for
+local frontend configuration and `.env.example` for the backend variable names.
+For React Router deep links, add a Render Static Site rewrite from `/*` to
+`/index.html`.
+
+`GET /health` is unauthenticated. It returns `200` with
+`{ "success": true, "status": "ok", "database": "connected" }` when MongoDB is
+ready, or `503` with `{ "success": false, "status": "degraded", "database":
+"disconnected" }` otherwise.
+
 ## Course enrollment and payment
 
 Enrollment endpoints require the authenticated `token` cookie. The browser
