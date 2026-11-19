@@ -13,7 +13,7 @@ const app = express();
 const allowedOrigins = (
   process.env.FRONTEND_URLS ||
   process.env.FRONTEND_URL ||
-  "http://localhost:5173"
+  "https://course-selling-1-mgse.onrender.com"
 )
   .split(",")
   .map((origin) => origin.trim())
