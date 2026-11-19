@@ -87,16 +87,7 @@ export async function signUp(req, res) {
     const token = await genToken(user._id);
 
     // 9. Set cookie
-<<<<<<< HEAD
     setAuthCookie(res, token);
-=======
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
->>>>>>> f4515c9d64ec911ec3ffbd405150874392ae5c0f
 
     // 10. Remove password from response
     const safeUser = user.toObject();
@@ -350,5 +341,4 @@ export async function googleLogin(req, res) {
     })
   }
 }
-
 
